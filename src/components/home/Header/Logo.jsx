@@ -1,7 +1,13 @@
+
+import Link from "next/link";
 import React from "react";
 
 const Logo = () => {
-  return <span className="text-xl font-bold">Gokasuwa</span>;
+  return (
+    <p className="font-bold">
+      <Link href={"/"}>Gokasuwa</Link>
+    </p>
+  );
 };
 
 export default Logo;

@@ -132,7 +132,7 @@ const Navigation = () => {
           <NavigationMenuItem>
             <Link href="/docs" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Documentation
+                Sell a Product
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

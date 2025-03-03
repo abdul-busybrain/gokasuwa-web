@@ -1,7 +1,15 @@
+import Container from "@/components/Container";
+
 function FooterSection() {
   return (
-    <footer className="border-t p-4 text-center text-gray-600">
-      &copy; {new Date().getFullYear()} Gokasuwa. All rights reserved.
+    <footer className="mt-auto py-4">
+      <Container className={"flex justify-between gap-4"}>
+        <p className="text-sm">Gokasuwa &copy; {new Date().getFullYear()}</p>
+
+        <p className="text-sm">
+          Designed & Engineered by Abdullahi.Busybrain @ ABILabs.ng
+        </p>
+      </Container>
     </footer>
   );
 }
