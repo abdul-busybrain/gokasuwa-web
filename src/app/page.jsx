@@ -1,14 +1,12 @@
-import Header from "../components/global/Header";
-import FeaturesSection from "../components/home/FeaturesSection";
-import FooterSection from "../components/home/FooterSection";
-import HeroSection from "../components/home/HeroSection";
-import HowSection from "../components/home/HowSection";
-import TestimonialsSection from "../components/home/TestimonialsSection";
+import FeaturesSection from "../components/home/Main/FeaturesSection";
+import HeroSection from "../components/home/Main/HeroSection";
+import HowSection from "../components/home/Main/HowSection";
+import TestimonialsSection from "../components/home/Main/TestimonialsSection";
+import FooterSection from "../components/home/Footer/FooterSection";
 
 function Home() {
   return (
     <>
-      <Header />
       <main>
         <HeroSection />
         <FeaturesSection />
