@@ -1,10 +1,16 @@
+"use client";
+
 import Container from "@/components/Container";
 import { SignIn } from "@clerk/nextjs";
+import { useSearchParams } from "next/navigation";
 
 export default function SignInPage() {
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo") || "/dashboard";
+
   return (
     <Container className={"flex justify-center"}>
-      <SignIn />
+      <SignIn signUpFallbackRedirectUrl={redirectTo} />
     </Container>
   );
 }
