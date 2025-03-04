@@ -1,9 +1,11 @@
+import Container from '@/components/Container'
+
 function Dashboard() {
-    return (
-        <div>
-            Dashboard
-        </div>
-    )
+  return (
+    <Container>
+      <div>Dashboardpage</div>
+    </Container>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

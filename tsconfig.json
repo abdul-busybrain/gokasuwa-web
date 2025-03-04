@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/home/Header/Logo.jsx",
-    "src/components/home/Header/index.jsx"
+    "src/components/home/Header/index.jsx",
+    "src/app/create/new/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

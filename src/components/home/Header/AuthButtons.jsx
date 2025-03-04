@@ -6,13 +6,20 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
 const AuthButtons = () => {
   return (
     <div>
       <SignedOut>
-        <SignInButton />
-        <SignUpButton />
+        <div className="flex gap-2">
+          <Button variant={"outline"} asChild>
+            <SignInButton />
+          </Button>
+          <Button asChild>
+            <SignUpButton />
+          </Button>
+        </div>
       </SignedOut>
       <SignedIn>
         <UserButton />
