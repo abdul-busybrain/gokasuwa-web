@@ -21,8 +21,8 @@ function Header() {
               <Logo />
               <span> / </span>
               <p>
-                <Link href={"/dashboard"} className="text-gray-500">
-                  Dashboard
+                <Link href={"/market"} className="text-gray-500">
+                  Market
                 </Link>
               </p>
             </div>
