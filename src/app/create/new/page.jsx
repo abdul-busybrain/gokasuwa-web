@@ -21,18 +21,18 @@ import { Switch } from "@/components/ui/switch";
 import Container from "@/components/Container";
 
 const formSchema = z.object({
-  image: z
-    .string()
-    .url({ message: "Invalid image URL." })
-    .or(z.string().min(1, "Image is required.")),
   productName: z.string().min(2, "Product name must be at least 2 characters."),
   description: z
     .string()
     .min(10, "Description must be at least 10 characters."),
-  pickupLocation: z.string().min(2, "Pickup location is required."),
-  condition: z.enum(["New", "Fairly Used"]),
+  image: z
+    .string()
+    .url({ message: "Invalid image URL." })
+    .or(z.string().min(1, "Image is required.")),
   price: z.coerce.number().min(1, "Price must be greater than 0."),
   negotiable: z.boolean(),
+  condition: z.enum(["New", "Fairly Used"]),
+  pickupLocation: z.string().min(2, "Pickup location is required."),
 });
 
 function CreatePage() {
