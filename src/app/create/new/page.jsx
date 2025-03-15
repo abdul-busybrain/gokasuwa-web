@@ -43,13 +43,13 @@ function CreatePage() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      image: "",
       productName: "",
       description: "",
-      pickupLocation: "",
-      condition: "New",
+      image: "",
       price: "",
       negotiable: false,
+      condition: "New",
+      pickupLocation: "",
     },
   });
 
@@ -64,23 +64,6 @@ function CreatePage() {
     <Container>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="image"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Product Image (URL)</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="https://example.com/image.jpg"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           <FormField
             control={form.control}
             name="productName"
@@ -100,7 +83,7 @@ function CreatePage() {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>Product Description</FormLabel>
                 <FormControl>
                   <Textarea placeholder="Describe your product..." {...field} />
                 </FormControl>
@@ -111,17 +94,60 @@ function CreatePage() {
 
           <FormField
             control={form.control}
-            name="pickupLocation"
+            name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Pickup Location</FormLabel>
+                <FormLabel>Product Image (URL)</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter location" {...field} />
+                  <Input
+                    placeholder="https://example.com/image.jpg"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
+          <div className="flex gap-16 items-center">
+            <div>
+              <FormField
+                control={form.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Product Price</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Enter price"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div>
+              <FormField
+                control={form.control}
+                name="negotiable"
+                render={({ field }) => (
+                  <FormItem className="flex">
+                    <FormLabel>Negotiable</FormLabel>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
 
           <FormField
             control={form.control}
@@ -151,30 +177,14 @@ function CreatePage() {
 
           <FormField
             control={form.control}
-            name="price"
+            name="pickupLocation"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Price</FormLabel>
+                <FormLabel>Pickup Location</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="Enter price" {...field} />
+                  <Input placeholder="Enter location" {...field} />
                 </FormControl>
                 <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="negotiable"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Negotiable</FormLabel>
-                <FormControl>
-                  <Switch
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
               </FormItem>
             )}
           />
