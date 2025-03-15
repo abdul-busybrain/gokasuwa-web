@@ -57,11 +57,11 @@ function CreatePage() {
   const onSubmit = (values) => {
     // Do something with the form values.
     setProducts([...products, values]);
-    router.push("/market");
+    router.push("/kasuwa");
   };
 
   return (
-     <Container>
+    <Container>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -71,7 +71,10 @@ function CreatePage() {
               <FormItem>
                 <FormLabel>Product Image (URL)</FormLabel>
                 <FormControl>
-                  <Input placeholder="https://example.com/image.jpg" {...field} />
+                  <Input
+                    placeholder="https://example.com/image.jpg"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -126,7 +129,10 @@ function CreatePage() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Condition</FormLabel>
-                <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <div className="flex gap-4">
                       <label className="flex items-center gap-2">
@@ -164,7 +170,10 @@ function CreatePage() {
               <FormItem>
                 <FormLabel>Negotiable</FormLabel>
                 <FormControl>
-                  <Switch checked={field.value} onCheckedChange={field.onChange} />
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
                 </FormControl>
               </FormItem>
             )}
@@ -177,4 +186,4 @@ function CreatePage() {
   );
 }
 
-export default CreatePage
+export default CreatePage;

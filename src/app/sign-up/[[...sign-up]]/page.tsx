@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 export default function Page() {
   const searchParams = useSearchParams();
 
-  const redirectTo = searchParams.get("redirectTo") || "/market";
+  const redirectTo = searchParams.get("redirectTo") || "/kasuwa";
   return (
     <Container className={"flex justify-center"}>
       <SignUp signInFallbackRedirectUrl={redirectTo} />
