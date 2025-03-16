@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { useDropzone } from "react-dropzone";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -25,10 +27,7 @@ const formSchema = z.object({
   description: z
     .string()
     .min(10, "Description must be at least 10 characters."),
-  image: z
-    .string()
-    .url({ message: "Invalid image URL." })
-    .or(z.string().min(1, "Image is required.")),
+  image: z.instanceof(File).optional(),
   price: z.coerce.number().min(1, "Price must be greater than 0."),
   negotiable: z.boolean(),
   condition: z.enum(["New", "Fairly Used"]),
@@ -38,6 +37,8 @@ const formSchema = z.object({
 function CreatePage() {
   const router = useRouter();
   const [products, setProducts] = useState([]);
+  const [preview, setPreview] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   // 1. Define your form.
   const form = useForm({
@@ -53,10 +54,37 @@ function CreatePage() {
     },
   });
 
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    if (file) {
+      setPreview(URL.createObjectURL(file));
+      setSelectedFile(file);
+      form.setValue("image", file, { shouldValidate: true });
+    }
+  };
+
+  const removeImage = () => {
+    setPreview(null);
+    setSelectedFile(null);
+    form.setValue("image", undefined);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop,
+  });
+
   // 2. Define a submit handler.
   const onSubmit = (values) => {
+    const formData = new FormData();
+
+    Object.keys(values).forEach((key) => {
+      formData.append(key, values[key]);
+    });
+
     // Do something with the form values.
     setProducts([...products, values]);
+    console.log("Form Data:", values);
     router.push("/kasuwa");
   };
 
@@ -97,13 +125,29 @@ function CreatePage() {
             name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Product Image (URL)</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="https://example.com/image.jpg"
-                    {...field}
-                  />
-                </FormControl>
+                <FormLabel>Product Image</FormLabel>
+                <div
+                  {...getRootProps()}
+                  className="border-dashed border-2 border-gray-300 p-6 text-center cursor-pointer hover:bg-gray-100"
+                >
+                  <Input {...getInputProps()} />
+                  {preview ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <Image
+                        src={preview}
+                        alt="Preview"
+                        width={200}
+                        height={200}
+                        className="rounded-md"
+                      />
+                      <Button variant={"destructive"} onClick={removeImage}>
+                        Remove image
+                      </Button>
+                    </div>
+                  ) : (
+                    <p>Drag & drop an image, or click to select a file</p>
+                  )}
+                </div>
                 <FormMessage />
               </FormItem>
             )}
